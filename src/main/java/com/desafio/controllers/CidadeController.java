@@ -1,8 +1,5 @@
 package com.desafio.controllers;
 
-import javax.transaction.Transactional;
-import javax.validation.Valid;
-
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -11,7 +8,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.util.UriComponentsBuilder;
 
 import com.desafio.dto.CidadeDTO;
 import com.desafio.models.Cidade;
@@ -29,7 +25,6 @@ public class CidadeController {
 	public final CidadeService cidadeService;
 	
 	@PostMapping
-	@Transactional
 	public ResponseEntity<?> cadastrar(@RequestBody CidadeDTO dto) {
 		
 		Response<CidadeDTO> response = new Response<CidadeDTO>();
@@ -40,10 +35,17 @@ public class CidadeController {
 	}
 	
 	@GetMapping(value = "/nome-cidade/{nome}")
-	public ResponseEntity<?> buscar(@PathVariable String nome) {
+	public ResponseEntity<?> buscarPorNome(@PathVariable String nome) {
 		Cidade cidade = cidadeService.findByNome(nome);
-		CidadeUtil.convertEntityToDto(cidade);
-		return ResponseEntity.ok().body(cidade);
+		CidadeDTO dto = CidadeUtil.convertEntityToDto(cidade);
+		return ResponseEntity.ok().body(dto);
+	}
+	
+	@GetMapping(value = "/estado/{estado}")
+	public ResponseEntity<?> buscarPorEstado(@PathVariable String estado) {
+		Cidade cidade = cidadeService.findByEstado(estado);
+		CidadeDTO dto = CidadeUtil.convertEntityToDto(cidade);
+		return ResponseEntity.ok().body(dto);
 	}
 	
 }

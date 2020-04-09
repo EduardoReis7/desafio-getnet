@@ -27,7 +27,7 @@ public class SwaggerConfig {
     private ApiInfo metaInfo() {
         ApiInfo apiInfo = new ApiInfo(
                 "Desafio Getnet : API CRUD em SpringBoot",
-                "API que manipula as informações que serão inseridas no one signal. ",
+                "API que permite cadastrar cidades e clientes, como também realizar busca, atualização e remoção.",
                 "1.0",
                 "Terms of Service",
                 new Contact("Repos do Projeo: ", "",
