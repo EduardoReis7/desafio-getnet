@@ -1,10 +1,10 @@
-package com.desafio.converters;
+package com.desafio.util;
 
 import com.desafio.dto.CidadeDTO;
 import com.desafio.models.Cidade;
 
-public class CidadeConverter {
-
+public class CidadeUtil {
+	
 	public static CidadeDTO convertEntityToDto(Cidade cidade) {
 
 		CidadeDTO dto = new CidadeDTO();
