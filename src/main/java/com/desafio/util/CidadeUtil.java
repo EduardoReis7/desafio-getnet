@@ -1,25 +1,28 @@
 package com.desafio.util;
 
-import com.desafio.dto.CidadeDTO;
-import com.desafio.models.Cidade;
+import com.desafio.dto.CidadeDto;
+import com.desafio.model.Cidade;
 
 public class CidadeUtil {
 	
-	public static CidadeDTO convertEntityToDto(Cidade cidade) {
+	public static CidadeDto convertEntityToDto(Cidade cidade) {
 
-		CidadeDTO dto = new CidadeDTO();
-		dto.setNome(cidade.getNome());
+		CidadeDto dto = new CidadeDto();
+		dto.setId(cidade.getId());
+		dto.setNomeCidade(cidade.getNomeCidade());
 		dto.setEstado(cidade.getEstado());
 
 		return dto;
 	}
 
-	public static Cidade convertDtoToEntity(CidadeDTO dto) {
+	public static Cidade convertDtoToEntity(CidadeDto dto) {
 
 		Cidade cidade = new Cidade();
-		cidade.setNome(dto.getNome());
+		cidade.setId(dto.getId());
+		cidade.setNomeCidade(dto.getNomeCidade());
 		cidade.setEstado(dto.getEstado());
 
 		return cidade;
 	}
+	
 }

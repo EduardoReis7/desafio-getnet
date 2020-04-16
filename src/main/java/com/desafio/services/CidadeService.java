@@ -1,13 +1,13 @@
 package com.desafio.services;
 
-import com.desafio.models.Cidade;
+import com.desafio.dto.CidadeDto;
 
 public interface CidadeService {
 	
-	Cidade save(Cidade cidade);
+	CidadeDto save(CidadeDto dto);
 	
-	Cidade findByNome(String nome);
+	CidadeDto findByNomeCidade(String nome);
 	
-	Cidade findByEstado(String estado);
+	CidadeDto findByEstado(String estado);
 	
 }

@@ -1,4 +1,4 @@
-package com.desafio.models;
+package com.desafio.model;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -9,6 +9,7 @@ import javax.persistence.Table;
 
 import lombok.Data;
 
+
 @Data
 @Entity
 @Table(name = "cidade")
@@ -18,7 +19,7 @@ public class Cidade {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	@Column(name = "cidade", nullable = false)
-	private String nome;
+	private String nomeCidade;
 	@Column(name = "estado", nullable = false)
 	private String estado;
 	
