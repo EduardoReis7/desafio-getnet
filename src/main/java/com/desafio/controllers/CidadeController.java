@@ -1,6 +1,7 @@
 package com.desafio.controllers;
 
 import javax.transaction.Transactional;
+import javax.validation.Valid;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -26,7 +27,7 @@ public class CidadeController {
 	
 	@PostMapping
 	@Transactional
-	public ResponseEntity<Response<CidadeDto>> cadastrar(@RequestBody CidadeDto dto) {
+	public ResponseEntity<Response<CidadeDto>> cadastrar(@Valid @RequestBody CidadeDto dto) {
 		
 		Response<CidadeDto> response = new Response<CidadeDto>();
 		CidadeDto cidadeDto = cidadeService.save(dto);

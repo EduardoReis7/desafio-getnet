@@ -3,6 +3,7 @@ package com.desafio.controllers;
 import java.util.List;
 
 import javax.transaction.Transactional;
+import javax.validation.Valid;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -31,7 +32,7 @@ public class ClienteController {
 
 	@PostMapping
 	@Transactional
-	public ResponseEntity<?> cadastrar(@RequestBody ClienteDto dto) {
+	public ResponseEntity<?> cadastrar(@Valid @RequestBody ClienteDto dto) {
 
 		Response<ClienteDto> response = new Response<ClienteDto>();
 		ClienteDto clienteDto = clienteService.save(dto);
@@ -60,7 +61,7 @@ public class ClienteController {
 
 	@PutMapping(value = "/{id}")
 	@Transactional
-	public ResponseEntity<?> alterarNomeCliente(Long id, @RequestBody AlterarNomeClienteForm form) {
+	public ResponseEntity<?> alterarNomeCliente(Long id, @Valid @RequestBody AlterarNomeClienteForm form) {
 		Response<ClienteDto> response = new Response<ClienteDto>();
 		ClienteDto clienteDto = clienteService.alterarNomeCliente(id, form);
 		response.setData(clienteDto);
