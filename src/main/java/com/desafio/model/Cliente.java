@@ -1,4 +1,4 @@
-package com.desafio.models;
+package com.desafio.model;
 
 import java.time.LocalDateTime;
 
