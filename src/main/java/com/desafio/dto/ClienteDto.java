@@ -3,11 +3,12 @@ package com.desafio.dto;
 import java.time.LocalDate;
 
 import com.desafio.model.Cidade;
-import com.desafio.model.Cliente;
 
-import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 
-@Data
+@Getter
+@Setter
 public class ClienteDto {
 	
 	private Long id;
@@ -17,17 +18,4 @@ public class ClienteDto {
 	private Integer idade;
 	private Cidade cidade;
 
-	public ClienteDto() {
-
-	}
-
-	public ClienteDto(Cliente cliente) {
-
-		id = cliente.getId();
-		nomeCliente = cliente.getNomeCliente();
-		sexo = cliente.getSexo();
-		dataNascimento = cliente.getDataNascimento();
-		idade = cliente.getIdade();
-		cidade = cliente.getCidade();
-	}
 }
