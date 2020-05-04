@@ -10,11 +10,11 @@ import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
-import lombok.EqualsAndHashCode;
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 import lombok.Getter;
 import lombok.Setter;
 
-@EqualsAndHashCode
 @Getter
 @Setter
 @Entity
@@ -29,6 +29,7 @@ public class Cliente {
 	@Column(name = "sexo", nullable = false)
 	private String sexo;
 	@Column(name = "data_nascimento", nullable = false)
+	@JsonFormat(pattern = "yyyy-MM-dd")
 	private LocalDate dataNascimento;
 	@Column(name = "idade", nullable = false)
 	private Integer idade;

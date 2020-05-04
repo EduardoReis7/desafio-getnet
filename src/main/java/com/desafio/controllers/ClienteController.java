@@ -9,6 +9,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -48,7 +49,7 @@ public class ClienteController {
 	}
 
 	@GetMapping(value = "/{nomeCliente}")
-	public ResponseEntity<ClienteDto> buscarClientePeloNome(String nomeCliente) {
+	public ResponseEntity<?> buscarClientePeloNome(String nomeCliente) {
 		ClienteDto clienteDto = clienteService.buscarPorNomeCliente(nomeCliente);
 		return ResponseEntity.ok().body(clienteDto);
 	}
@@ -61,16 +62,16 @@ public class ClienteController {
 
 	@PutMapping(value = "/{id}")
 	@Transactional
-	public ResponseEntity<?> alterarNomeCliente(Long id, @Valid @RequestBody AlterarNomeClienteForm form) {
+	public ResponseEntity<?> alterarNomeCliente(@PathVariable Long id, @Valid @RequestBody AlterarNomeClienteForm form) {
 		Response<ClienteDto> response = new Response<ClienteDto>();
 		ClienteDto clienteDto = clienteService.alterarNomeCliente(id, form);
 		response.setData(clienteDto);
-		return ResponseEntity.status(HttpStatus.CREATED).body(response);
+		return ResponseEntity.status(HttpStatus.NO_CONTENT).body(null);
 	}
 
-	@DeleteMapping("/{id}")
+	@DeleteMapping(value = "/{id}")
 	@Transactional
-	public ResponseEntity<?> deletarClientePeloId(Long id) {
+	public ResponseEntity<?> deletarClientePeloId(@PathVariable Long id) {
 		clienteService.removerPorId(id);
 		return ResponseEntity.noContent().build();
 	}

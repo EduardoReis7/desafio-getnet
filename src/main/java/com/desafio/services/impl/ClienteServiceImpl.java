@@ -2,6 +2,7 @@ package com.desafio.services.impl;
 
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.desafio.controllers.form.AlterarNomeClienteForm;
@@ -11,13 +12,11 @@ import com.desafio.repository.ClienteRepository;
 import com.desafio.services.ClienteService;
 import com.desafio.util.ClienteUtil;
 
-import lombok.RequiredArgsConstructor;
-
 @Service
-@RequiredArgsConstructor
 public class ClienteServiceImpl implements ClienteService{
 
-	private final ClienteRepository clienteRepository;
+	@Autowired
+	private ClienteRepository clienteRepository;
 	
 	@Override
 	public ClienteDto save(ClienteDto clienteDto) {
@@ -37,8 +36,7 @@ public class ClienteServiceImpl implements ClienteService{
 
 	@Override
 	public void removerPorId(Long id) {
-		buscarPorId(id);
-		clienteRepository.deleteById(id);
+		clienteRepository.delete(ClienteUtil.convertDtoToEntity(buscarPorId(id)));
 	}
 
 	@Override

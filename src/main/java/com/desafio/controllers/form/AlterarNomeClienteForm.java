@@ -2,11 +2,14 @@ package com.desafio.controllers.form;
 
 import javax.validation.constraints.NotNull;
 
-import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 
-@Data
+@Getter
+@Setter
 public class AlterarNomeClienteForm {
 	
 	@NotNull
 	private String nomeCliente;
+	
 }

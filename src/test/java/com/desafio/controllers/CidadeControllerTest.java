@@ -48,6 +48,8 @@ class CidadeControllerTest {
 		cidadeDto.setId(ID);
 		cidadeDto.setNomeCidade(NOME_CIDADE);
 		cidadeDto.setEstado(ESTADO);
+		
+		cidadeService.save(cidadeDto);
 	}
 	
 	@AfterEach
@@ -73,10 +75,6 @@ class CidadeControllerTest {
 	
 	@Test
 	void testBuscarCidadePorNome() throws Exception {
-		cidadeService.save(cidadeDto);
-		
-		CidadeDto dto = cidadeDto;
-		System.out.println(dto);
 		mvc.perform(MockMvcRequestBuilders.get(URL + "/nome-cidade/" + cidadeDto.getNomeCidade())
 				.contentType(MediaType.APPLICATION_JSON)
 				.accept(MediaType.APPLICATION_JSON))
@@ -85,15 +83,13 @@ class CidadeControllerTest {
 	
 	@Test
 	void testBuscarCidadePorEstado() throws Exception {
-		cidadeService.save(cidadeDto);
-		
 		mvc.perform(MockMvcRequestBuilders.get(URL + "/estado/" + cidadeDto.getEstado())
 				.contentType(MediaType.APPLICATION_JSON)
 				.accept(MediaType.APPLICATION_JSON))
 				.andExpect(status().isOk());
 	}
 	
-	public String getJsonPayLoad(Long id, String nome, String estado) throws Exception {
+	String getJsonPayLoad(Long id, String nome, String estado) throws Exception {
 		cidadeDto = new CidadeDto();
 		cidadeDto.setId(id);
 		cidadeDto.setNomeCidade(nome);
