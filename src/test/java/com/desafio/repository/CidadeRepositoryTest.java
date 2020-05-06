@@ -1,6 +1,5 @@
 package com.desafio.repository;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 import org.junit.jupiter.api.AfterEach;
@@ -53,17 +52,5 @@ class CidadeRepositoryTest {
 		Cidade response = cidadeRepository.save(cidade);
 		
 		assertNotNull(response);
-	}
-	
-	@Test
-	void testFindByNomeCidade() {
-		Cidade response = cidadeRepository.findByNomeCidade(NOME_CIDADE);
-		assertEquals(response.getNomeCidade(), NOME_CIDADE);
-	}
-	
-	@Test
-	void testFindByEstado() {
-		Cidade response = cidadeRepository.findByEstado(ESTADO);
-		assertEquals(response.getEstado(), ESTADO);
 	}
 }

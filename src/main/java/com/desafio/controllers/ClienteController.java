@@ -5,6 +5,7 @@ import java.util.List;
 import javax.transaction.Transactional;
 import javax.validation.Valid;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -22,14 +23,12 @@ import com.desafio.model.Cliente;
 import com.desafio.response.Response;
 import com.desafio.services.ClienteService;
 
-import lombok.RequiredArgsConstructor;
-
 @RestController
 @RequestMapping("/clientes")
-@RequiredArgsConstructor
 public class ClienteController {
 
-	private final ClienteService clienteService;
+	@Autowired
+	private ClienteService clienteService;
 
 	@PostMapping
 	@Transactional

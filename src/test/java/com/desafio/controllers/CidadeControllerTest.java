@@ -65,12 +65,21 @@ class CidadeControllerTest {
 				.andExpect(status().isCreated());
 	}
 	
+	
 	@Test
 	void testCadastrarCidadeNull() throws Exception {
 		mvc.perform(MockMvcRequestBuilders.post(URL).content("")
 				.contentType(MediaType.APPLICATION_JSON)
 				.accept(MediaType.APPLICATION_JSON))
 				.andExpect(status().isBadRequest());
+	}
+	
+	@Test
+	void testListarCidades() throws Exception {
+		mvc.perform(MockMvcRequestBuilders.get(URL)
+				.contentType(MediaType.APPLICATION_JSON)
+				.accept(MediaType.APPLICATION_JSON))
+		.andExpect(status().isOk());
 	}
 	
 	@Test

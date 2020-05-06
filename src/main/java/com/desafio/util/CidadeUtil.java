@@ -1,5 +1,8 @@
 package com.desafio.util;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 import com.desafio.dto.CidadeDto;
 import com.desafio.model.Cidade;
 
@@ -24,5 +27,9 @@ public class CidadeUtil {
 
 		return cidade;
 	}
-	
+
+	public static List<CidadeDto> convertListEntityToListDto(List<Cidade> listEntity) {
+		return listEntity.stream().map(i -> new CidadeDto(i)).collect(Collectors.toList());
+	}
+
 }
