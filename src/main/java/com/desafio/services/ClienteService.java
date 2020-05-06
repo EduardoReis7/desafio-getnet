@@ -10,7 +10,7 @@ public interface ClienteService {
 	
 	ClienteDto save(ClienteDto clienteDto);
 	
-	ClienteDto buscarPorNomeCliente(String nomeCliente);
+	List<ClienteDto> buscarPorNomeCliente(String nomeCliente);
 	
 	ClienteDto buscarPorId(Long id);
 	

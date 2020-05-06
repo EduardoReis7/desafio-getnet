@@ -25,8 +25,8 @@ public class ClienteServiceImpl implements ClienteService{
 	}
 
 	@Override
-	public ClienteDto buscarPorNomeCliente(String nomeCliente) {
-		return ClienteUtil.convertEntityToDto(clienteRepository.findByNomeCliente(nomeCliente));
+	public List<ClienteDto> buscarPorNomeCliente(String nomeCliente) {
+		return ClienteUtil.convertListEntityToListDto(clienteRepository.findByNomeCliente(nomeCliente));
 	}
 
 	@Override

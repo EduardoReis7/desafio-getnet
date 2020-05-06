@@ -1,5 +1,8 @@
 package com.desafio.util;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 import com.desafio.dto.ClienteDto;
 import com.desafio.model.Cliente;
 
@@ -30,4 +33,10 @@ public class ClienteUtil {
 
 		return cliente;
 	}
+
+	public static List<ClienteDto> convertListEntityToListDto(List<Cliente> listEntity) {
+		return listEntity.stream().map(i -> new ClienteDto(i)).collect(Collectors.toList());
+	}
+	
+	
 }

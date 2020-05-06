@@ -49,7 +49,7 @@ public class ClienteController {
 
 	@GetMapping(value = "/{nomeCliente}")
 	public ResponseEntity<?> buscarClientePeloNome(String nomeCliente) {
-		ClienteDto clienteDto = clienteService.buscarPorNomeCliente(nomeCliente);
+		List<ClienteDto> clienteDto = clienteService.buscarPorNomeCliente(nomeCliente);
 		return ResponseEntity.ok().body(clienteDto);
 	}
 
