@@ -1,7 +1,11 @@
 package com.desafio.controllers;
 
-import javax.transaction.Transactional;
+import java.util.List;
 
+import javax.transaction.Transactional;
+import javax.validation.Valid;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -15,18 +19,16 @@ import com.desafio.dto.CidadeDto;
 import com.desafio.response.Response;
 import com.desafio.services.CidadeService;
 
-import lombok.RequiredArgsConstructor;
-
 @RestController
 @RequestMapping("/cidades")
-@RequiredArgsConstructor
 public class CidadeController {
 	
-	public final CidadeService cidadeService;
+	@Autowired
+	public CidadeService cidadeService;
 	
 	@PostMapping
 	@Transactional
-	public ResponseEntity<Response<CidadeDto>> cadastrar(@RequestBody CidadeDto dto) {
+	public ResponseEntity<Response<CidadeDto>> cadastrar(@Valid @RequestBody CidadeDto dto) {
 		
 		Response<CidadeDto> response = new Response<CidadeDto>();
 		CidadeDto cidadeDto = cidadeService.save(dto);
@@ -35,15 +37,21 @@ public class CidadeController {
 		return ResponseEntity.status(HttpStatus.CREATED).body(response);
 	}
 	
+	@GetMapping
+	public ResponseEntity<?> listarCidades() {
+		List<CidadeDto> listDto = cidadeService.listarCidades();
+		return ResponseEntity.ok().body(listDto);
+	}
+	
 	@GetMapping(value = "/nome-cidade/{nomeCidade}")
 	public ResponseEntity<?> buscarPorNome(@PathVariable String nomeCidade) {
-		CidadeDto cidadeDto = cidadeService.findByNomeCidade(nomeCidade);
+		List<CidadeDto> cidadeDto = cidadeService.findByNomeCidade(nomeCidade);
 		return ResponseEntity.ok().body(cidadeDto);
 	}
 	
 	@GetMapping(value = "/estado/{estado}")
 	public ResponseEntity<?> buscarPorEstado(@PathVariable String estado) {
-		CidadeDto cidadeDto = cidadeService.findByEstado(estado);
+		List<CidadeDto> cidadeDto = cidadeService.findByEstado(estado);
 		return ResponseEntity.ok().body(cidadeDto);
 	}
 	

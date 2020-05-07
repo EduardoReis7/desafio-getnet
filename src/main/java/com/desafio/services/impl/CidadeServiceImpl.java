@@ -1,5 +1,8 @@
 package com.desafio.services.impl;
 
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.desafio.dto.CidadeDto;
@@ -8,13 +11,11 @@ import com.desafio.repository.CidadeRepository;
 import com.desafio.services.CidadeService;
 import com.desafio.util.CidadeUtil;
 
-import lombok.RequiredArgsConstructor;
-
 @Service
-@RequiredArgsConstructor
 public class CidadeServiceImpl implements CidadeService{
 	
-	private final CidadeRepository cidadeRepository;
+	@Autowired
+	private CidadeRepository cidadeRepository;
 
 	@Override
 	public CidadeDto save(CidadeDto dto) {
@@ -23,13 +24,18 @@ public class CidadeServiceImpl implements CidadeService{
 	}
 
 	@Override
-	public CidadeDto findByNomeCidade(String nome) {
-		return CidadeUtil.convertEntityToDto(cidadeRepository.findByNomeCidade(nome));
+	public List<CidadeDto> findByNomeCidade(String nome) {
+		return CidadeUtil.convertListEntityToListDto(cidadeRepository.findByNomeCidade(nome));
 	}
 
 	@Override
-	public CidadeDto findByEstado(String estado) {
-		return CidadeUtil.convertEntityToDto(cidadeRepository.findByEstado(estado));
+	public List<CidadeDto> findByEstado(String estado) {
+		return CidadeUtil.convertListEntityToListDto(cidadeRepository.findByEstado(estado));
+	}
+
+	@Override
+	public List<CidadeDto> listarCidades() {
+		return CidadeUtil.convertListEntityToListDto(cidadeRepository.findAll());
 	}
 	
 }

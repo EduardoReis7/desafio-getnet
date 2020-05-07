@@ -2,9 +2,11 @@ package com.desafio.dto;
 
 import com.desafio.model.Cidade;
 
-import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 
-@Data
+@Getter
+@Setter
 public class CidadeDto {
 	
 	private Long id;
@@ -16,9 +18,8 @@ public class CidadeDto {
 	}
 	
 	public CidadeDto(Cidade cidade) {
-		
-		id = cidade.getId();
-		nomeCidade = cidade.getNomeCidade();
-		estado = cidade.getEstado();
+		this.id = cidade.getId();
+		this.nomeCidade = cidade.getNomeCidade();
+		this.estado = cidade.getEstado();
 	}
 }
