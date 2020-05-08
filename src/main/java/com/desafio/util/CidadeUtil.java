@@ -31,5 +31,5 @@ public class CidadeUtil {
 	public static List<CidadeDto> convertListEntityToListDto(List<Cidade> listEntity) {
 		return listEntity.stream().map(i -> new CidadeDto(i)).collect(Collectors.toList());
 	}
-
+	
 }

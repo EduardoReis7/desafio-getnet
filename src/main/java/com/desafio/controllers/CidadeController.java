@@ -16,43 +16,38 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.desafio.dto.CidadeDto;
-import com.desafio.response.Response;
 import com.desafio.services.CidadeService;
 
 @RestController
 @RequestMapping("/cidades")
 public class CidadeController {
-	
+
 	@Autowired
 	public CidadeService cidadeService;
-	
+
 	@PostMapping
 	@Transactional
-	public ResponseEntity<Response<CidadeDto>> cadastrar(@Valid @RequestBody CidadeDto dto) {
-		
-		Response<CidadeDto> response = new Response<CidadeDto>();
+	public ResponseEntity<?> cadastrar(@Valid @RequestBody CidadeDto dto) {
 		CidadeDto cidadeDto = cidadeService.save(dto);
-		response.setData(cidadeDto);
-		
-		return ResponseEntity.status(HttpStatus.CREATED).body(response);
+		return ResponseEntity.status(HttpStatus.CREATED).body(cidadeDto);
 	}
-	
+
 	@GetMapping
 	public ResponseEntity<?> listarCidades() {
 		List<CidadeDto> listDto = cidadeService.listarCidades();
 		return ResponseEntity.ok().body(listDto);
 	}
-	
+
 	@GetMapping(value = "/nome-cidade/{nomeCidade}")
 	public ResponseEntity<?> buscarPorNome(@PathVariable String nomeCidade) {
 		List<CidadeDto> cidadeDto = cidadeService.findByNomeCidade(nomeCidade);
 		return ResponseEntity.ok().body(cidadeDto);
 	}
-	
+
 	@GetMapping(value = "/estado/{estado}")
 	public ResponseEntity<?> buscarPorEstado(@PathVariable String estado) {
 		List<CidadeDto> cidadeDto = cidadeService.findByEstado(estado);
 		return ResponseEntity.ok().body(cidadeDto);
 	}
-	
+
 }
