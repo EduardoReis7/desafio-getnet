@@ -20,7 +20,6 @@ import org.springframework.web.bind.annotation.RestController;
 import com.desafio.controllers.form.AlterarNomeClienteForm;
 import com.desafio.dto.ClienteDto;
 import com.desafio.model.Cliente;
-import com.desafio.response.Response;
 import com.desafio.services.ClienteService;
 
 @RestController
@@ -33,12 +32,8 @@ public class ClienteController {
 	@PostMapping
 	@Transactional
 	public ResponseEntity<?> cadastrar(@Valid @RequestBody ClienteDto dto) {
-
-		Response<ClienteDto> response = new Response<ClienteDto>();
 		ClienteDto clienteDto = clienteService.save(dto);
-		response.setData(clienteDto);
-
-		return ResponseEntity.status(HttpStatus.CREATED).body(response);
+		return ResponseEntity.status(HttpStatus.CREATED).body(clienteDto);
 	}
 
 	@GetMapping
@@ -62,9 +57,7 @@ public class ClienteController {
 	@PutMapping(value = "/{id}")
 	@Transactional
 	public ResponseEntity<?> alterarNomeCliente(@PathVariable Long id, @Valid @RequestBody AlterarNomeClienteForm form) {
-		Response<ClienteDto> response = new Response<ClienteDto>();
-		ClienteDto clienteDto = clienteService.alterarNomeCliente(id, form);
-		response.setData(clienteDto);
+		clienteService.alterarNomeCliente(id, form);
 		return ResponseEntity.status(HttpStatus.NO_CONTENT).body(null);
 	}
 
