@@ -21,6 +21,7 @@ import com.desafio.controllers.form.AlterarNomeClienteForm;
 import com.desafio.dto.CidadeDto;
 import com.desafio.dto.ClienteDto;
 import com.desafio.model.Cidade;
+import com.desafio.repository.CidadeRepository;
 import com.desafio.repository.ClienteRepository;
 import com.desafio.services.CidadeService;
 import com.desafio.services.ClienteService;
@@ -55,6 +56,9 @@ class ClienteControllerTest {
 	CidadeService cidadeService;
 	
 	@Autowired
+	CidadeRepository cidadeRepository;
+	
+	@Autowired
 	MockMvc mvc;
 	
 	@BeforeEach
@@ -83,6 +87,7 @@ class ClienteControllerTest {
 	@AfterEach
 	void clean() throws Exception {
 		clienteRepository.deleteAll();
+		cidadeRepository.deleteAll();
 	}
 	
 	@Test
@@ -91,14 +96,6 @@ class ClienteControllerTest {
 				.contentType(MediaType.APPLICATION_JSON)
 				.accept(MediaType.APPLICATION_JSON))
 				.andExpect(status().isCreated());
-	}
-	
-	@Test
-	void testCadastrarClienteNull() throws Exception {
-		mvc.perform(MockMvcRequestBuilders.post(URL).content("")
-				.contentType(MediaType.APPLICATION_JSON)
-				.accept(MediaType.APPLICATION_JSON))
-				.andExpect(status().isBadRequest());
 	}
 	
 	@Test

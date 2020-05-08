@@ -17,6 +17,7 @@ import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 
 import com.desafio.dto.CidadeDto;
 import com.desafio.repository.CidadeRepository;
+import com.desafio.repository.ClienteRepository;
 import com.desafio.services.CidadeService;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
@@ -35,6 +36,9 @@ class CidadeControllerTest {
 	
 	@Autowired
 	CidadeRepository cidadeRepository;
+
+	@Autowired
+	ClienteRepository clienteRepository;
 	
 	@Autowired
 	CidadeService cidadeService;
@@ -59,7 +63,9 @@ class CidadeControllerTest {
 	
 	@Test
 	void testCadastrarCidadeValida() throws Exception {
-		mvc.perform(MockMvcRequestBuilders.post(URL).content(getJsonPayLoad(ID, NOME_CIDADE, ESTADO))
+		clienteRepository.deleteAll();
+		cidadeRepository.deleteAll();
+		mvc.perform(MockMvcRequestBuilders.post(URL).content(getJsonPayLoad(NOME_CIDADE, ESTADO))
 				.contentType(MediaType.APPLICATION_JSON)
 				.accept(MediaType.APPLICATION_JSON))
 				.andExpect(status().isCreated());
@@ -98,9 +104,8 @@ class CidadeControllerTest {
 				.andExpect(status().isOk());
 	}
 	
-	String getJsonPayLoad(Long id, String nome, String estado) throws Exception {
+	String getJsonPayLoad(String nome, String estado) throws Exception {
 		cidadeDto = new CidadeDto();
-		cidadeDto.setId(id);
 		cidadeDto.setNomeCidade(nome);
 		cidadeDto.setEstado(estado);
 		
