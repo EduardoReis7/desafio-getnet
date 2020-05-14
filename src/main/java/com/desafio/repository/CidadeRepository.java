@@ -3,13 +3,13 @@ package com.desafio.repository;
 import java.util.List;
 import java.util.Optional;
 
-import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.mongodb.repository.MongoRepository;
 import org.springframework.stereotype.Repository;
 
 import com.desafio.model.Cidade;
 
 @Repository
-public interface CidadeRepository extends JpaRepository<Cidade, Long>{
+public interface CidadeRepository extends MongoRepository<Cidade, String>{
 	
 	List<Cidade> findByNomeCidade(String nomeCidade);
 	

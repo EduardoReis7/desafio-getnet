@@ -2,7 +2,6 @@ package com.desafio.controllers;
 
 import java.util.List;
 
-import javax.transaction.Transactional;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,7 +25,6 @@ public class CidadeController {
 	public CidadeService cidadeService;
 
 	@PostMapping
-	@Transactional
 	public ResponseEntity<?> cadastrar(@Valid @RequestBody CidadeDto dto) {
 		CidadeDto cidadeDto = cidadeService.save(dto);
 		return ResponseEntity.status(HttpStatus.CREATED).body(cidadeDto);

@@ -12,11 +12,11 @@ public interface ClienteService {
 	
 	List<ClienteDto> buscarPorNomeCliente(String nomeCliente);
 	
-	ClienteDto buscarPorId(Long id);
+	ClienteDto buscarPorId(String id);
 	
-	void removerPorId(Long id);
+	void removerPorId(String id);
 	
-	ClienteDto alterarNomeCliente(Long id, AlterarNomeClienteForm form);
+	ClienteDto alterarNomeCliente(String id, AlterarNomeClienteForm form);
 	
 	List<Cliente> listar();
 }

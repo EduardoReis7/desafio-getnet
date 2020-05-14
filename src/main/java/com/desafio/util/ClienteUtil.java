@@ -1,6 +1,7 @@
 package com.desafio.util;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 import com.desafio.dto.ClienteDto;
@@ -31,6 +32,32 @@ public class ClienteUtil {
 		cliente.setIdade(dto.getIdade());
 		cliente.setCidade(dto.getCidade());
 
+		return cliente;
+	}
+	
+	public static ClienteDto convertOptionalEntityToDto(Optional<Cliente> optCliente) {
+		
+		ClienteDto dto = new ClienteDto();
+		dto.setId(optCliente.get().getId());
+		dto.setNomeCliente(optCliente.get().getNomeCliente());
+		dto.setSexo(optCliente.get().getSexo());
+		dto.setDataNascimento(optCliente.get().getDataNascimento());
+		dto.setIdade(optCliente.get().getIdade());
+		dto.setCidade(optCliente.get().getCidade());
+		
+		return dto;
+	}
+	
+	public static Cliente convertOptionalEntityToEntity(Optional<Cliente> optCliente) {
+		
+		Cliente cliente = new Cliente();
+		cliente.setId(optCliente.get().getId());
+		cliente.setNomeCliente(optCliente.get().getNomeCliente());
+		cliente.setSexo(optCliente.get().getSexo());
+		cliente.setDataNascimento(optCliente.get().getDataNascimento());
+		cliente.setIdade(optCliente.get().getIdade());
+		cliente.setCidade(optCliente.get().getCidade());
+		
 		return cliente;
 	}
 

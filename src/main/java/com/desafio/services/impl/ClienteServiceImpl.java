@@ -30,18 +30,18 @@ public class ClienteServiceImpl implements ClienteService{
 	}
 
 	@Override
-	public ClienteDto buscarPorId(Long id) {
-		return ClienteUtil.convertEntityToDto(clienteRepository.getOne(id));
+	public ClienteDto buscarPorId(String id) {
+		return ClienteUtil.convertOptionalEntityToDto(clienteRepository.findById(id));
 	}
 
 	@Override
-	public void removerPorId(Long id) {
+	public void removerPorId(String id) {
 		clienteRepository.delete(ClienteUtil.convertDtoToEntity(buscarPorId(id)));
 	}
 
 	@Override
-	public ClienteDto alterarNomeCliente(Long id, AlterarNomeClienteForm form) {
-		Cliente cliente = clienteRepository.getOne(id);
+	public ClienteDto alterarNomeCliente(String id, AlterarNomeClienteForm form) {
+		Cliente cliente = ClienteUtil.convertOptionalEntityToEntity(clienteRepository.findById(id));
 		cliente.setNomeCliente(form.getNomeCliente());
 		return ClienteUtil.convertEntityToDto(cliente);
 	}

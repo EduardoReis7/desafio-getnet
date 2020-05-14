@@ -2,7 +2,6 @@ package com.desafio.controllers;
 
 import java.util.List;
 
-import javax.transaction.Transactional;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,7 +29,6 @@ public class ClienteController {
 	private ClienteService clienteService;
 
 	@PostMapping
-	@Transactional
 	public ResponseEntity<?> cadastrar(@Valid @RequestBody ClienteDto dto) {
 		ClienteDto clienteDto = clienteService.save(dto);
 		return ResponseEntity.status(HttpStatus.CREATED).body(clienteDto);
@@ -49,21 +47,19 @@ public class ClienteController {
 	}
 
 	@GetMapping(value = "/{id}")
-	public ResponseEntity<?> buscarClientePeloId(Long id) {
+	public ResponseEntity<?> buscarClientePeloId(String id) {
 		ClienteDto clienteDto = clienteService.buscarPorId(id);
 		return ResponseEntity.ok().body(clienteDto);
 	}
 
 	@PutMapping(value = "/{id}")
-	@Transactional
-	public ResponseEntity<?> alterarNomeCliente(@PathVariable Long id, @Valid @RequestBody AlterarNomeClienteForm form) {
+	public ResponseEntity<?> alterarNomeCliente(@PathVariable String id, @Valid @RequestBody AlterarNomeClienteForm form) {
 		clienteService.alterarNomeCliente(id, form);
 		return ResponseEntity.status(HttpStatus.NO_CONTENT).body(null);
 	}
 
 	@DeleteMapping(value = "/{id}")
-	@Transactional
-	public ResponseEntity<?> deletarClientePeloId(@PathVariable Long id) {
+	public ResponseEntity<?> deletarClientePeloId(@PathVariable String id) {
 		clienteService.removerPorId(id);
 		return ResponseEntity.noContent().build();
 	}

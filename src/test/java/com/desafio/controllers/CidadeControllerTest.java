@@ -27,7 +27,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 @AutoConfigureMockMvc
 class CidadeControllerTest {
 	
-	private static final Long ID = 1L;
+//	private static final Long ID = 1L;
 	private static final String NOME_CIDADE = "Tapes";
 	private static final String ESTADO = "RS";
 	private static final String URL = "/cidades";
@@ -49,7 +49,7 @@ class CidadeControllerTest {
 	@BeforeEach
 	void setUp() throws Exception {
 		cidadeDto = new CidadeDto();
-		cidadeDto.setId(ID);
+//		cidadeDto.setId(ID);
 		cidadeDto.setNomeCidade(NOME_CIDADE);
 		cidadeDto.setEstado(ESTADO);
 		

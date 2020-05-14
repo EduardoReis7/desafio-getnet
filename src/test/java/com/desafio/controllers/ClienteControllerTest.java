@@ -65,7 +65,7 @@ class ClienteControllerTest {
 	void setUp() throws Exception {
 		
 		Cidade cidade = new Cidade();
-		cidade.setNomeCidade("Viamão");
+		cidade.setNomeCidade("Porto Alegre");
 		cidade.setEstado("RS");
 		
 		cidade2 = cidadeService.save(CidadeUtil.convertEntityToDto(cidade));

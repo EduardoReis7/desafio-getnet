@@ -18,7 +18,7 @@ import com.desafio.model.Cidade;
 @ActiveProfiles("test")
 class CidadeRepositoryTest {
 	
-	private static final Long ID = 1L;
+//	private static final Long ID = 1L;
 	private static final String NOME_CIDADE = "Tapes";
 	private static final String ESTADO = "RS";
 	
@@ -30,7 +30,7 @@ class CidadeRepositoryTest {
 	@BeforeEach
 	void setUp() throws Exception {
 		cidade = new Cidade();
-		cidade.setId(ID);
+//		cidade.setId(ID);
 		cidade.setNomeCidade(NOME_CIDADE);
 		cidade.setEstado(ESTADO);
 		
@@ -45,7 +45,7 @@ class CidadeRepositoryTest {
 	@Test
 	void testSave() throws Exception {
 		cidade = new Cidade();
-		cidade.setId(2L);
+//		cidade.setId(2L);
 		cidade.setNomeCidade("Chapecó");
 		cidade.setEstado("SC");
 		

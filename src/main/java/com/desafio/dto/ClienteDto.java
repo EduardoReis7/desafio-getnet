@@ -16,7 +16,7 @@ import lombok.Setter;
 @Setter
 public class ClienteDto {
 	
-	private Long id;
+	private String id;
 	@NotNull(message = "O campo não pode ser nulo.")
 	@NotEmpty(message = "O campo não pode estar vazio.")
 	private String nomeCliente;
