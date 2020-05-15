@@ -23,7 +23,7 @@ public class ClienteDto {
 	@NotNull(message = "O campo não pode ser nulo.")
 	@NotEmpty(message = "O campo não pode estar vazio.")
 	private String sexo;
-	@NotNull
+	@NotNull(message = "O campo não pode ser nulo.")
 	@JsonFormat(pattern = "yyyy-MM-dd")
 	private LocalDate dataNascimento;
 	@NotNull(message = "O campo não pode ser nulo.")
@@ -46,7 +46,7 @@ public class ClienteDto {
 
 	@Override
 	public String toString() {
-		return  "{  \"cidade\": {    \"estado\": \""+this.cidade.getEstado()+"\",    \"id\": "+this.cidade.getId()+",    \"nomeCidade\": \""+this.cidade.getNomeCidade()+"\"  },  \"dataNascimento\": \""+this.dataNascimento+"\",  \"idade\": "+this.idade+",  \"nomeCliente\": \""+this.nomeCliente+"\",  \"sexo\": \""+this.sexo+"\"}";
+		return  "{  \"cidade\": {    \"estado\": \""+this.cidade.getEstado()+"\",    \"id\": \""+this.cidade.getId()+"\",    \"nomeCidade\": \""+this.cidade.getNomeCidade()+"\"  },  \"dataNascimento\": \""+this.dataNascimento+"\",  \"idade\": "+this.idade+",  \"nomeCliente\": \""+this.nomeCliente+"\",  \"sexo\": \""+this.sexo+"\"}";
 	}
 
 }

@@ -40,8 +40,7 @@ class ClienteControllerTest {
 	private static final Integer IDADE = 19;
 	private static final String URL = "/clientes";
 	
-	
-	private ClienteDto clienteDto2;  
+	private ClienteDto clienteDto2;
 	private ClienteDto clienteDto;
 	private CidadeDto cidade2;
 	private AlterarNomeClienteForm alterarNomeClienteForm;
@@ -138,7 +137,7 @@ class ClienteControllerTest {
 	}
 	
 	String getJsonPayLoad() throws Exception {
-		return clienteDto.toString();
+		return clienteDto2.toString();
 	}
 	
 	String getJsonAlterarNome() throws Exception {

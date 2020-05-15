@@ -43,6 +43,7 @@ public class ClienteServiceImpl implements ClienteService{
 	public ClienteDto alterarNomeCliente(String id, AlterarNomeClienteForm form) {
 		Cliente cliente = ClienteUtil.convertOptionalEntityToEntity(clienteRepository.findById(id));
 		cliente.setNomeCliente(form.getNomeCliente());
+		clienteRepository.save(cliente);
 		return ClienteUtil.convertEntityToDto(cliente);
 	}
 
@@ -50,6 +51,4 @@ public class ClienteServiceImpl implements ClienteService{
 	public List<Cliente> listar() {
 		return clienteRepository.findAll();
 	}
-
-	
 }
