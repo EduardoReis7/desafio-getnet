@@ -29,37 +29,37 @@ public class ClienteController {
 	private ClienteService clienteService;
 
 	@PostMapping
-	public ResponseEntity<?> cadastrar(@Valid @RequestBody ClienteDto dto) {
+	public ResponseEntity<ClienteDto> cadastrar(@Valid @RequestBody ClienteDto dto) {
 		ClienteDto clienteDto = clienteService.save(dto);
 		return ResponseEntity.status(HttpStatus.CREATED).body(clienteDto);
 	}
 
 	@GetMapping
-	public ResponseEntity<?> listar() {
+	public ResponseEntity<List<Cliente>> listar() {
 		List<Cliente> listaCliente = clienteService.listar();
 		return ResponseEntity.ok().body(listaCliente);
 	}
 
 	@GetMapping(value = "/{nomeCliente}")
-	public ResponseEntity<?> buscarClientePeloNome(String nomeCliente) {
+	public ResponseEntity<List<ClienteDto>> buscarClientePeloNome(String nomeCliente) {
 		List<ClienteDto> clienteDto = clienteService.buscarPorNomeCliente(nomeCliente);
 		return ResponseEntity.ok().body(clienteDto);
 	}
 
 	@GetMapping(value = "/{id}")
-	public ResponseEntity<?> buscarClientePeloId(String id) {
+	public ResponseEntity<ClienteDto> buscarClientePeloId(String id) {
 		ClienteDto clienteDto = clienteService.buscarPorId(id);
 		return ResponseEntity.ok().body(clienteDto);
 	}
 
 	@PutMapping(value = "/{id}")
-	public ResponseEntity<?> alterarNomeCliente(@PathVariable String id, @Valid @RequestBody AlterarNomeClienteForm form) {
+	public ResponseEntity<ClienteDto> alterarNomeCliente(@PathVariable String id, @Valid @RequestBody AlterarNomeClienteForm form) {
 		clienteService.alterarNomeCliente(id, form);
 		return ResponseEntity.status(HttpStatus.NO_CONTENT).body(null);
 	}
 
 	@DeleteMapping(value = "/{id}")
-	public ResponseEntity<?> deletarClientePeloId(@PathVariable String id) {
+	public ResponseEntity<ClienteDto> deletarClientePeloId(@PathVariable String id) {
 		clienteService.removerPorId(id);
 		return ResponseEntity.noContent().build();
 	}

@@ -1,5 +1,7 @@
 package com.desafio;
 
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+
 import org.junit.jupiter.api.Test;
 import org.junit.runner.RunWith;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -13,6 +15,8 @@ class DesafioGetnetApplicationTests {
 
 	@Test
 	void contextLoads() {
+		DesafioGetnetApplication.main(new String[] {});
+		assertNotNull(DesafioGetnetApplication.class);
 	}
 
 }

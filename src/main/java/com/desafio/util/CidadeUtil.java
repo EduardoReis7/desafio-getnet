@@ -8,6 +8,10 @@ import com.desafio.model.Cidade;
 
 public class CidadeUtil {
 	
+	private CidadeUtil() {
+		throw new IllegalStateException("Utility class");
+	}
+	
 	public static CidadeDto convertEntityToDto(Cidade cidade) {
 
 		CidadeDto dto = new CidadeDto();

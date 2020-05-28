@@ -1,6 +1,7 @@
 package com.desafio.util;
 
 import java.util.List;
+import java.util.NoSuchElementException;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
@@ -9,6 +10,9 @@ import com.desafio.model.Cliente;
 
 public class ClienteUtil {
 	
+	private ClienteUtil() {	
+		throw new IllegalStateException("Utility class");
+	}
 	public static ClienteDto convertEntityToDto(Cliente cliente) {
 
 		ClienteDto dto = new ClienteDto();
@@ -37,6 +41,10 @@ public class ClienteUtil {
 	
 	public static ClienteDto convertOptionalEntityToDto(Optional<Cliente> optCliente) {
 		
+		if(!optCliente.isPresent()) {
+			throw new NoSuchElementException();
+		}
+		
 		ClienteDto dto = new ClienteDto();
 		dto.setId(optCliente.get().getId());
 		dto.setNomeCliente(optCliente.get().getNomeCliente());
@@ -50,6 +58,10 @@ public class ClienteUtil {
 	
 	public static Cliente convertOptionalEntityToEntity(Optional<Cliente> optCliente) {
 		
+		if(!optCliente.isPresent()) {
+			throw new NoSuchElementException();
+		}
+		
 		Cliente cliente = new Cliente();
 		cliente.setId(optCliente.get().getId());
 		cliente.setNomeCliente(optCliente.get().getNomeCliente());
@@ -57,8 +69,9 @@ public class ClienteUtil {
 		cliente.setDataNascimento(optCliente.get().getDataNascimento());
 		cliente.setIdade(optCliente.get().getIdade());
 		cliente.setCidade(optCliente.get().getCidade());
-		
+			
 		return cliente;
+		
 	}
 
 	public static List<ClienteDto> convertListEntityToListDto(List<Cliente> listEntity) {

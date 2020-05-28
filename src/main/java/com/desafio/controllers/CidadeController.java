@@ -25,25 +25,25 @@ public class CidadeController {
 	public CidadeService cidadeService;
 
 	@PostMapping
-	public ResponseEntity<?> cadastrar(@Valid @RequestBody CidadeDto dto) {
+	public ResponseEntity<CidadeDto> cadastrar(@Valid @RequestBody CidadeDto dto) {
 		CidadeDto cidadeDto = cidadeService.save(dto);
 		return ResponseEntity.status(HttpStatus.CREATED).body(cidadeDto);
 	}
 
 	@GetMapping
-	public ResponseEntity<?> listarCidades() {
+	public ResponseEntity<List<CidadeDto>> listarCidades() {
 		List<CidadeDto> listDto = cidadeService.listarCidades();
 		return ResponseEntity.ok().body(listDto);
 	}
 
 	@GetMapping(value = "/nome-cidade/{nomeCidade}")
-	public ResponseEntity<?> buscarPorNome(@PathVariable String nomeCidade) {
+	public ResponseEntity<List<CidadeDto>> buscarPorNome(@PathVariable String nomeCidade) {
 		List<CidadeDto> cidadeDto = cidadeService.findByNomeCidade(nomeCidade);
 		return ResponseEntity.ok().body(cidadeDto);
 	}
 
 	@GetMapping(value = "/estado/{estado}")
-	public ResponseEntity<?> buscarPorEstado(@PathVariable String estado) {
+	public ResponseEntity<List<CidadeDto>> buscarPorEstado(@PathVariable String estado) {
 		List<CidadeDto> cidadeDto = cidadeService.findByEstado(estado);
 		return ResponseEntity.ok().body(cidadeDto);
 	}
